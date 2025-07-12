@@ -1,0 +1,39 @@
+﻿@page
+@model CreateModel
+@{
+    ViewData["Title"] = "Create Bulletin";
+}
+
+<h1>Create Bulletin</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="CreateCommand.Title"></label>
+        <input asp-for="CreateCommand.Title" class="form-control" />
+        <span asp-validation-for="CreateCommand.Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CreateCommand.Description"></label>
+        <textarea asp-for="CreateCommand.Description" class="form-control"></textarea>
+        <span asp-validation-for="CreateCommand.Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CreateCommand.Category"></label>
+        <textarea asp-for="CreateCommand.Category" class="form-control"></textarea>
+        <span asp-validation-for="CreateCommand.Category" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CreateCommand.SubCategory"></label>
+        <textarea asp-for="CreateCommand.SubCategory" class="form-control"></textarea>
+        <span asp-validation-for="CreateCommand.SubCategory" class="text-danger"></span>
+    </div>
+   
+    <!-- Додай інші поля CreateCommand за потребою -->
+
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

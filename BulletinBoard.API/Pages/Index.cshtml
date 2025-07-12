@@ -1,0 +1,34 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Bulletins List";
+}
+
+<h1>Bulletins</h1>
+
+<a asp-page="Create">Create New Bulletin</a>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Category</th>
+        <th>SubCategory</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var bulletin in Model.Bulletins)
+    {
+        <tr>
+            <td>@bulletin.Title</td>
+            <td>@bulletin.Category</td>
+            <td>@bulletin.SubCategory</td>
+            <td>
+                <a asp-page="Details" asp-route-id="@bulletin.Id">Details</a> |
+                <a asp-page="Edit" asp-route-id="@bulletin.Id">Edit</a> |
+                <a asp-page="Delete" asp-route-id="@bulletin.Id">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

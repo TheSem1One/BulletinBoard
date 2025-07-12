@@ -1,0 +1,31 @@
+﻿@page "{id:int}"
+@model EditModel
+@{
+    ViewData["Title"] = "Edit Bulletin";
+}
+
+<h1>Edit Bulletin</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="UpdateCommand.Id" />
+
+    <div class="form-group">
+        <label asp-for="UpdateCommand.Title"></label>
+        <input asp-for="UpdateCommand.Title" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="UpdateCommand.Category"></label>
+        <input asp-for="UpdateCommand.Category" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="UpdateCommand.Description"></label>
+        <input asp-for="UpdateCommand.Description" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="UpdateCommand.SubCategory"></label>
+        <textarea asp-for="UpdateCommand.SubCategory" class="form-control"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+</form>
