@@ -40,9 +40,9 @@ namespace BulletinBoard.API.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult<bool>> Delete(int id)
+        public async Task<ActionResult<bool>> Delete([FromBody] DeleteCommand command)
         {
-            var result = await _mediator.Send(new DeleteQuery() { Id = id });
+            var result = await _mediator.Send(command);
             return Ok(result);
         }
     }

@@ -14,8 +14,7 @@ namespace BulletinBoard.Application.Features.Bulletin
         private readonly IBulletin _bulletinService = bulletinService;
         public async Task<BulletinByIdDto> Handle(GetByIdQuery request, CancellationToken cancellationToken)
         {
-            var result = await _bulletinService.GetById(request.Id);
-            return result;
+            return await _bulletinService.GetById(request.Id);
         }
     }
 }

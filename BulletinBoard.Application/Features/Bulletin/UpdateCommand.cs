@@ -22,8 +22,7 @@ namespace BulletinBoard.Application.Features.Bulletin
         public async Task<bool> Handle(UpdateCommand request, CancellationToken cancellationToken)
         {
             var mapper = _mapper.Map<UpdateCommand, UpdateBulletinDto>(request);
-            var result = await _bulletinService.Update(mapper);
-            return result;
+            return await _bulletinService.Update(mapper);
         }
     }
 }

@@ -23,7 +23,7 @@ public class DeleteModel : PageModel
 
     public async Task<IActionResult> OnPostAsync()
     {
-        var result = await _mediator.Send(new DeleteQuery { Id = Id });
+        var result = await _mediator.Send(new DeleteCommand { Id = Id });
         if (result)
             return RedirectToPage("Index");
 

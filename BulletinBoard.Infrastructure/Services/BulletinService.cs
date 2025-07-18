@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using BulletinBoard.Application.Common.Interfaces;
 using BulletinBoard.Application.DTO.Bulletin;
-using BulletinBoard.Application.Mappers;
 using BulletinBoard.Domain.Entity;
 using BulletinBoard.Infrastructure.Helpers;
 using BulletinBoard.Infrastructure.Persistence;
@@ -19,8 +18,10 @@ namespace BulletinBoard.Infrastructure.Services
         public async Task<bool> Create(BulletinDto dto)
         {
             var bulletin = _mapper.Map<BulletinDto, Announcements>(dto);
+
             await _context.Announcements.AddAsync(bulletin);
             var result = await _context.SaveChangesAsync();
+
             return result > 0;
         }
 
@@ -29,17 +30,15 @@ namespace BulletinBoard.Infrastructure.Services
             var buletin = await _context.Announcements
                 .Where(x => x.Id == id)
                 .FirstOrDefaultAsync();
-            var map = _mapper.Map<Announcements, BulletinByIdDto>(buletin);
-            return map;
+
+            return _mapper.Map<Announcements, BulletinByIdDto>(buletin);
         }
 
         public async Task<IEnumerable<BulletinGetAllDto>> GetAll()
         {
-            var announcements = _context.Announcements.Where(x => x.Status == true).ToListAsync();
-            var map =
-                _mapper.Map<IList<Announcements>, IList<BulletinGetAllDto>>(announcements.Result
-                    .ToArray());
-            return map;
+            var announcements = await _context.Announcements.Where(x => x.Status == true).ToListAsync();
+
+            return _mapper.Map<IList<Announcements>, IList<BulletinGetAllDto>>(announcements);
         }
 
         public async Task<bool> Update(UpdateBulletinDto dto)
@@ -60,6 +59,7 @@ namespace BulletinBoard.Infrastructure.Services
         public async Task<bool> Delete(int id)
         {
             var operation = await _context.Announcements.Where(x => x.Id == id).ExecuteDeleteAsync();
+
             if (operation > 0) return true;
             else throw new Exception("Delete failed");
         }
